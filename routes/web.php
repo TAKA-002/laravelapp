@@ -27,6 +27,10 @@ Route::get('/hello', function () {
     return '<html><body><h1>Hello</h1><p>This is sample page.</p></body></html>';
 });
 
+
+// アクセスしたURLからパラメーターを取得することができる
+// urlのパラメータが、無名関数の引数として渡される。受け取るクロージャー側の変数名は任意でOKだし、同じでもいい。
+Route::get('hello/{msg}', function ($message) {
 $html = <<<EOF
 <html>
 <head>
@@ -39,14 +43,11 @@ h1{font-size:100px; text-align:right; color:#eee; margin:-40px 0 -50px 0; }
 
 <body>
 <h1>Hello</h1>
-<p>This is sample page.</p>
-<p>これは、サンプルで作ったページです。</p>
+<p>{$message}</p>
+<p>これはパラメーターのサンプルページです。</p>
 </body>
 </html>
 EOF;
 
-
-// Routeクラスgetメソッドでは、returnするものが用意できればそのままwebページが用意されるということ。
-Route::get('/here', function () use ($html) {
-    return $html;
+return $html;
 });
