@@ -30,7 +30,8 @@ Route::get('/hello', function () {
 
 // アクセスしたURLからパラメーターを取得することができる
 // urlのパラメータが、無名関数の引数として渡される。受け取るクロージャー側の変数名は任意でOKだし、同じでもいい。
-Route::get('hello/{msg}', function ($message) {
+// パラメータが複数でも同じ。
+Route::get('hello/{msg}/{baka}/', function ($message, $bak) {
 $html = <<<EOF
 <html>
 <head>
@@ -44,6 +45,7 @@ h1{font-size:100px; text-align:right; color:#eee; margin:-40px 0 -50px 0; }
 <body>
 <h1>Hello</h1>
 <p>{$message}</p>
+<p>{$bak}</p>
 <p>これはパラメーターのサンプルページです。</p>
 </body>
 </html>
