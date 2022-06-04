@@ -22,16 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-    // view関数は、bladeファイルを読み込みその中のテンプレをレンダリングするが、ここではbladeファイルがないのでview関数はいらない。
-    return '<html><body><h1>Hello</h1><p>This is sample page.</p></body></html>';
-});
-
-
 // アクセスしたURLからパラメーターを取得することができる
 // urlのパラメータが、無名関数の引数として渡される。受け取るクロージャー側の変数名は任意でOKだし、同じでもいい。
 // パラメータが複数でも同じ。
-Route::get('hello/{msg}/{baka}/', function ($message, $bak) {
+// 必須パラメータと任意パラメータがある。必須パラメータはウェブブラウザでurlに記述されていない場合はエラーとなるが、任意ならデフォルト値を設定しておけるのでエラーにならない。
+Route::get('hello/{msg?}/', function ($msg = "no message.") {
 $html = <<<EOF
 <html>
 <head>
@@ -44,8 +39,7 @@ h1{font-size:100px; text-align:right; color:#eee; margin:-40px 0 -50px 0; }
 
 <body>
 <h1>Hello</h1>
-<p>{$message}</p>
-<p>{$bak}</p>
+<p>{$msg}</p>
 <p>これはパラメーターのサンプルページです。</p>
 </body>
 </html>
