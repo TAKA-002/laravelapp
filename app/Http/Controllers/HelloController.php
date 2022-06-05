@@ -4,61 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-global $head, $style, $body, $end;
-$head = '<html><head>';
-$style = <<<EOF
-<style>
-body{
-    font-size:16px;
-    color:#999;
-}
-h1{
-    font-size:100px;
-    text-align:right;
-    color:#eee;
-    margin:-40px 0 -50px 0;
-}
-</style>
-EOF;
-$body = '</head><body>';
-$end = '</body></html>';
-
-function tag($tag, $txt)
-{
-    return "<${tag}>" . $txt . "</${tag}>";
-}
+// シングルアクションコントローラーの基本形
 class HelloController extends Controller
 {
 
-    public function index($id = "no name", $pass = "unknown")
+    public function __invoke()
     {
-        global $head, $style, $body, $end;
+        return <<<EOF
+        <html>
+        <head>
+        <title>Hello</title>
+        <style>
+        body{
+            font-size: 16px;
+            color: #999;
+        }
+        h1{
+            font-size: 100px;
+            text-align: right;
+            color: #eee;
+            margin: 15px 0 0 0;
+        }
+        </style>
+        </head>
 
-        $html = $head
-            . tag("title", "Hello/Index")
-            . $style
-            . $body
-            . tag("h1", "Index")
-            . tag("p", "これはHello/INDEXページです。")
-            . '<a href="./other">Go to Other Page.</a>'
-            . $end;
+        <body>
+        <h1>Single Action</h1>
+        <p>これは、シングルアクションコントローラーのアクションです。</p>
+        </body>
 
-        return $html;
+        </html>
+
+        EOF;
     }
 
-    public function other()
-    {
-        global $head, $style, $body, $end;
-
-        $html =
-            $head
-            . tag("title", "OTHER")
-            . $style
-            . $body
-            . tag("h1", "Other")
-            . tag("p", "これはOTHERページです。")
-            . $end;
-
-        return $html;
-    }
+    // シングルアクションコントローラーの中でもアクションメソッドは追加できるけど、基本的にはアクションとして使用しないように。
+    // やってみたら呼び出せ、ページの表示もされたけど、使い方としては間違いなので、otherアクションを削除。
 }

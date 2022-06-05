@@ -23,21 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ルーティングとアクションをURLの関係と同期させる方がいいのでそこだけ注意
-// http://アプリケーションのアドレス/コントローラー/アクション
-// hello/index.htmlページには、アクションのindexを割り当てる。ここでhelloとしているのは、「index.html」は省略されることがおおいから。
+// シングルアクションコントローラーで呼び出すと、下のotherは基本的に使うことはできない。挙動はしたが、ルール違反。
+// コンストラクターの様にこのコントローラーでは__invokeのアクションを実行するという書き方。
 Route::get(
     'hello',
-    'App\Http\Controllers\HelloController@index'
-);
-
-// なので、hello/other.htmlの場合には、アクション名はotherにするべき。
-// このコメントアウトみたいに、otherのルーティングにアクション名が異なるものを使用すると混乱のもと。
-// Route::get(
-//     'hello/other',
-//     'App\Http\Controllers\HelloController@next'
-// );
-Route::get(
-    'hello/other',
-    'App\Http\Controllers\HelloController@other'
+    'App\Http\Controllers\HelloController'
 );
