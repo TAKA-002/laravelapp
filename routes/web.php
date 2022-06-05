@@ -23,9 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// シングルアクションコントローラーで呼び出すと、下のotherは基本的に使うことはできない。挙動はしたが、ルール違反。
-// コンストラクターの様にこのコントローラーでは__invokeのアクションを実行するという書き方。
 Route::get(
     'hello',
-    'App\Http\Controllers\HelloController'
+    'App\Http\Controllers\HelloController@index'
 );
