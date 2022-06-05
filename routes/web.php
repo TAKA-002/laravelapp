@@ -23,10 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ルート情報から直接テンプレートを使う場合。
-// クロージャーから、view関数でテンプレートを指定する。
-// view関数の引数は、「フォルダ.ファイル」で記述すること。（なんかイメージとしてはviewsフォルダをオブジェクトにみたてて、中を参照している感じに受け取った。）
-// どうやらviewにテンプレートを設定したから表示されているというよりは、挙動としては、viewはResponseインスタンスを返しているようで、そのResponseインスタンスがテンプレートをセットしているらしい。
-Route::get('hello', function () {
-    return view('hello.index');
-});
+
+// クロージャーではなく、controllerを呼び出している。
+Route::get(
+    'hello',
+    'App\Http\Controllers\HelloController@index' // バックスラッシュじゃなきゃいけないみたい。
+);
