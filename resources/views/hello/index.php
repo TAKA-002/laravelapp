@@ -19,7 +19,14 @@
 
 <body>
     <h1>Index</h1>
-    <p>This is a sample page with php-template.</p>
+    <!--
+        変数$msgはコントローラーから渡される。
+        dateメソッドはphpの関数。
+        基本的に、このテンプレートの中は、phpのスクリプトを使用できる。
+        問題は、コントローラーからテンプレートにデータを渡す方法を知らないといけない。
+     -->
+    <p><?php echo $msg; ?></p>
+    <p><?php echo date("Y年n月j日"); ?></p>
 
 </body>
 

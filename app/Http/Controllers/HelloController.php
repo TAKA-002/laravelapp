@@ -10,7 +10,12 @@ class HelloController extends Controller
 {
     public function index()
     {
-        // ルートからではなく、コントローラーのindexアクションでview関数を呼び、viewsのhelloフォルダのindexファイルをレンダリングする。
-        return view('hello.index');
+        // データを渡すためには、view関数を実行するアクションメソッドの中で定義している。
+        // view関数の第２引数にその変数を渡してやると、テンプレートに値を渡すことができる。
+        // データを渡すときは、配列形式（連想配列）で渡す！
+        $data = [
+            'msg' => 'これはコントローラから渡されたメッセージです。'
+        ];
+        return view('hello.index', $data);
     }
 }
