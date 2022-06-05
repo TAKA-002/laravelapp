@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class HelloController extends Controller
 {
-    public function index()
+    // パラメータは、任意パラメータを受け取る場合には、デフォルト値を引数に設定しておく。
+    // 必須パラメータの時には不要だが、もしもパラメータが渡ってきていない場合には、エラーになる。無名関数（クロージャー）の時の引数と同じ。
+    public function index($id = "no name", $pass = "unknown")
     {
         return <<<EOF
     <html>
@@ -29,6 +31,10 @@ class HelloController extends Controller
     <body>
     <h1>Index</h1>
     <p>これはHelloコントローラのindexアクションです。</p>
+    <ul>
+    <li>ID: {$id}</li>
+    <li>PASS: {$pass}</li>
+    </ul>
     </body>
     </html>
     EOF;

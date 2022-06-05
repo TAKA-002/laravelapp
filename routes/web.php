@@ -23,9 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// アクションにルートを割り当てることで、表示されるようになる。
-// laravel8だと本のままではエラーになる。解決策はAppから書くことと名前空間をインポートすること。ここはAppから書いている。
+// ルートパラメータの付け方は、ルートに以前の時と同じ様に{パラメータ}として記述。
+// 必須パラメータなら「?」はなし。任意パラメータなら「?」あり。
+// あとはコントローラ側に記述
 Route::get(
-    'hello',
+    'hello/{id?}/{pass?}',
     'App\Http\Controllers\HelloController@index'
 );
