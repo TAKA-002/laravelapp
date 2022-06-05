@@ -23,10 +23,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ルートパラメータの付け方は、ルートに以前の時と同じ様に{パラメータ}として記述。
-// 必須パラメータなら「?」はなし。任意パラメータなら「?」あり。
-// あとはコントローラ側に記述
+// ルーティングとアクションをURLの関係と同期させる方がいいのでそこだけ注意
+// http://アプリケーションのアドレス/コントローラー/アクション
+// hello/index.htmlページには、アクションのindexを割り当てる。ここでhelloとしているのは、「index.html」は省略されることがおおいから。
 Route::get(
-    'hello/{id?}/{pass?}',
+    'hello',
     'App\Http\Controllers\HelloController@index'
+);
+
+// なので、hello/other.htmlの場合には、アクション名はotherにするべき。
+// このコメントアウトみたいに、otherのルーティングにアクション名が異なるものを使用すると混乱のもと。
+// Route::get(
+//     'hello/other',
+//     'App\Http\Controllers\HelloController@next'
+// );
+Route::get(
+    'hello/other',
+    'App\Http\Controllers\HelloController@other'
 );
