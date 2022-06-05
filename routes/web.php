@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 // クロージャーではなく、controllerを呼び出している。
 Route::get(
-    'hello',
+    // ルート情報をパラメータとして取得するように設定。任意パラメータにしているので、コントローラーのindexアクションではデフォルト値を設定している。
+    'hello/{id?}',
     'App\Http\Controllers\HelloController@index' // バックスラッシュじゃなきゃいけないみたい。
 );
