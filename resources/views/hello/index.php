@@ -19,15 +19,10 @@
 
 <body>
     <h1>Index</h1>
-    <!--
-        変数$msgはコントローラーから渡される。
-        dateメソッドはphpの関数。
-        基本的に、このテンプレートの中は、phpのスクリプトを使用できる。
-        問題は、コントローラーからテンプレートにデータを渡す方法を知らないといけない。
-     -->
     <p><?php echo $msg; ?></p>
-    <!-- パラメータを受け取り、表示する場所を作成している -->
+    <!-- もしもクエリが複数あるときは、「&」で繋げられるので、それも取得できる。（http://localhost:8000/hello?id=query_string_sample&name=takayuki） -->
     <p><?php echo 'ID：' . $id; ?></p>
+    <p><?php echo 'NAME：' . $name; ?></p>
     <p><?php echo date("Y年n月j日"); ?></p>
 
 </body>

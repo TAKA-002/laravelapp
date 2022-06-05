@@ -8,16 +8,16 @@ use Illuminate\Http\Response;
 
 class HelloController extends Controller
 {
-    // パラメータが省略されることを考えて、デフォルト値を設定している。
-    public function index($id = 'I\'ts no ID.')
+    // クエリー文字列を取得するには、Requestクラスをまずインスタンスする
+    public function index(Request $request)
     {
-        // データを渡すためには、view関数を実行するアクションメソッドの中で定義している。
-        // view関数の第２引数にその変数を渡してやると、テンプレートに値を渡すことができる。
-        // データを渡すときは、配列形式（連想配列）で渡す！
         $data = [
             'msg' => 'これはコントローラから渡されたメッセージです。',
-            // パラメータをデータのれんそう配列にセットしている
-            'id' => $id
+            // idに、Requestインスタンスのidメソッドをセット。これは、URLの「?キー名=xxxxxxxxxxxxxxxxxx」の情報を取得するメソッド。
+            // もし「?キー名」のキーがidじゃなかったら、「$request->キー名」も変わる。
+            // もしクエリが複数あったら、「＆」でつなげられるので、それもこのように取得できるみたい。
+            'id' => $request->id,
+            'name' => $request->name
         ];
         return view('hello.index', $data);
     }

@@ -24,9 +24,10 @@ Route::get('/', function () {
 });
 
 
-// クロージャーではなく、controllerを呼び出している。
 Route::get(
-    // ルート情報をパラメータとして取得するように設定。任意パラメータにしているので、コントローラーのindexアクションではデフォルト値を設定している。
-    'hello/{id?}',
+    // ルート情報は、クエリ文字列を取得する場合でも、特に何も特別なことはしない。
+    // で、ブラウザにクエリ付きのURLでアクセスしてみる。（http://localhost:8000/hello?id=query_string_sample）
+    // さらに、もしもクエリが複数あるときは、「&」で繋げられるので、それも取得できる。（http://localhost:8000/hello?id=query_string_sample&name=takayuki）
+    'hello',
     'App\Http\Controllers\HelloController@index' // バックスラッシュじゃなきゃいけないみたい。
 );
