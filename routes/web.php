@@ -25,9 +25,16 @@ Route::get('/', function () {
 
 
 Route::get(
-    // ルート情報は、クエリ文字列を取得する場合でも、特に何も特別なことはしない。
-    // で、ブラウザにクエリ付きのURLでアクセスしてみる。（http://localhost:8000/hello?id=query_string_sample）
-    // さらに、もしもクエリが複数あるときは、「&」で繋げられるので、それも取得できる。（http://localhost:8000/hello?id=query_string_sample&name=takayuki）
+    // helloルートにアクセスしたとき。
     'hello',
-    'App\Http\Controllers\HelloController@index' // バックスラッシュじゃなきゃいけないみたい。
+    // HelloControllerのindexアクションメソッドを使用する
+    'App\Http\Controllers\HelloController@index'
+);
+
+// ここでは、POST通信された際の処理をRoute::postで実行している。
+Route::post(
+    // helloルートにアクセスしたときにフォームがactionでhelloページをリロードする
+    // そのとき、コントローラのpostアクションでmsgには上書きされたデータが配列に格納されている。
+    'hello',
+    'App\Http\Controllers\HelloController@post'
 );
